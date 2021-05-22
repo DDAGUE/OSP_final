@@ -21,7 +21,7 @@
 ---
 
 ## :memo: 역할
-> Flask 기반 웹 서비스 제공 : 박도훈  
-> crawling 기능 및 TF-IDF 유사도 분석 : 정대규  
-> elasticsearch 기반 데이터 관리 : 강창민  
-> 실행환경 셋업 및 자동실행 쉘스크립트 및 Cosine similatiry 유사도 분석 : 강보석  
+> 박도훈 : Flask 기반 웹 서비스 제공.  
+> 정대규 : crawling 기능 및 TF-IDF 유사도 분석.  
+> 강창민 : elasticsearch 기반 데이터 관리.  
+> 강보석 : 실행환경 셋업 및 자동실행 쉘스크립트 및 Cosine similatiry 유사도 분석.  
