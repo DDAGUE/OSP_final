@@ -1,19 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
- <head>
-  <meta charset="UTF-8">
-  <title>Home</title>
- </head>
- <body>
-  <p>영화 이름 입력<input type="text" name="movie_name"></p>
-  {% if True %}
-  <img src="{{ url_for('static', filename=image_file) }}"></br>
-  {% endif %}
+<head>
+<meta charset="UTF-8">
+<title>movie list</title>
+</head>
+<body>
+<div>
+      <ul>
+	{% for item in items %}
+          <div>
+		<input type="radio" name="index" value={{item.idx}} />
+            		<img src="{{item.image}}" alt="" width="110" height="150">  제목 : {{ item.title }} ( 감독: {{item.director}} ) 배우: {{ item.actor }}
+          </div>
+ 	{% endfor %}
   <form action="http://localhost:5000/cosine" method="GET">
   <input type="submit" value="cosine"/> Cosine
   </form>
   <form action="http://localhost:5000/tfidf" method="GET">
   <input type="submit" value="tfidf"/> TF-IDF
   </form>
- </body>
+      </ul>
+  </div>
+</body>
 </html>
+
+
