@@ -5,6 +5,7 @@ import sys
 
 movie_list = []
 movie_info = []
+error_info = []
 def url_search():
 
     # sys.stdout = open('stdout.txt', 'w')
@@ -42,8 +43,13 @@ def make_info(url):
     movie = html.select("dl.info_spec")
 
     # 영화 제목
-    name = html.select_one("h3.h_movie a").text
-    Name.append(name)
+    try:
+        name = html.select_one("h3.h_movie a").text
+    except:
+        name = "None"
+        Name.append(name)
+    else:
+        Name.append(name)
 
     # 장르 및 감독과 배우
     for m in movie:
@@ -68,8 +74,11 @@ def make_info(url):
         # title 태그에 정보가 없고 story 에만 정보 있는 경우.
         Story1 = html.select_one("div h5.h_tx_story").get_text()
     except:
-        Story2 = html.select_one("div p.con_tx").get_text()
-        Story = Story2
+        try:
+            Story2 = html.select_one("div p.con_tx").get_text()
+            Story = Story2
+        except:
+            Story = "None"
     else:
         Story2 = html.select_one("div p.con_tx").get_text()
         Story = Story1 + " " + Story2
@@ -77,20 +86,20 @@ def make_info(url):
     # Story = Story1 + " " + Story2
     story.append(list(Story))
     story = re.sub('[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\$%&\\\=\(\'\"]', '', Story).split()
-
+    story = "test"
     info = {
         'title': Name,
         'genre': genre,
         'director & actor': d_a,
         'story': story
     }
-    print(info)
+    if info['title'] == "None" or info['story'] == "None":
+        error_info.append(url)
+   # print(info)
     movie_info.append(info)
     # sys.stdout.close()
 
 if __name__ == "__main__":
     url_search()
     for i in movie_list:
-        print(i)
         make_info(i)
-    # print(movie_info)
