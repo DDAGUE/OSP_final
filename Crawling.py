@@ -1,11 +1,20 @@
+#!/usr/bin/python3
+#-*- coding: utf-8 -*-
+
 import requests
 from bs4 import BeautifulSoup
 import re
 import sys
+from elasticsearch import Elasticsearch
+
 
 movie_list = []
 movie_info = []
 error_info = []
+es_host="127.0.0.1"
+es_port="9200"
+es = Elasticsearch([{'host':es_host, 'port':es_port}], timeout=30)
+
 def url_search():
 
     # sys.stdout = open('stdout.txt', 'w')
@@ -27,7 +36,7 @@ def url_search():
             number += 1
     # sys.stdout.close()
 
-def make_info(url):
+def make_info(idx, url):
 
     Name = list()
     genre = list()
@@ -86,7 +95,6 @@ def make_info(url):
     # Story = Story1 + " " + Story2
     story.append(list(Story))
     story = re.sub('[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\$%&\\\=\(\'\"]', '', Story).split()
-    story = "test"
     info = {
         'title': Name,
         'genre': genre,
@@ -95,11 +103,12 @@ def make_info(url):
     }
     if info['title'] == "None" or info['story'] == "None":
         error_info.append(url)
-   # print(info)
-    movie_info.append(info)
+    es.index(index='movie', doc_type='movies', id=idx, body=info)
     # sys.stdout.close()
 
 if __name__ == "__main__":
     url_search()
+    idx = 1
     for i in movie_list:
-        make_info(i)
+        make_info(idx, i)
+        idx = idx + 1
