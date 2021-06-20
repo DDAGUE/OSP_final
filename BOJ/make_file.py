@@ -1,43 +1,43 @@
+#!/usr/bin/python3
+#-*- coding: utf-8 -*-
+
 import requests
-import json
 from bs4 import BeautifulSoup
 import re
 import sys
+from elasticsearch import Elasticsearch
 
-def call_API(words):
 
-    api_movie = []
-    
-    client_id = "sNhNY29KQ_9fggJH6kb4"
-    client_key = "gN1zdMPlO2"
-    movie = words
+movie_list = []
+movie_info = []
+error_info = []
+es_host="127.0.0.1"
+es_port="9200"
+es = Elasticsearch([{'host':es_host, 'port':es_port}], timeout=30)
 
-    url = f"https://openapi.naver.com/v1/search/movie.json?query={movie}"
+def url_search():
 
-    header = {
-        "X-Naver-Client-Id" : client_id,
-        "X-Naver-Client-Secret": client_key
-    }
+    # sys.stdout = open('stdout.txt', 'w')
+    number = 1
+    for num in range(1, 41):
+        raw = requests.get("https://movie.naver.com/movie/sdb/rank/"
+                           "rmovie.nhn?sel=pnt&date=20210527&page=" + str(num),
+                           headers={'User-Agent':'Mozilla/5.0'})
+        html = BeautifulSoup(raw.text, 'html.parser')
 
-    r = requests.get(url, headers=header)
-    data = r.json()
-    for info in data['items']:
-        temp_t = re.sub('<b>', '', info['title'])
-        temp_t = re.sub('</b>', '', temp_t)
-        temp_d = re.sub('[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\$%&\\\=\(\'\"]', ', ', info['director'])
-        temp_a = re.sub('[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\$%&\\\=\(\'\"]', ', ', info['actor'])
-        api_info = {
-            'title': temp_t,
-            'director': temp_d,
-            'actor': temp_a,
-	    'image': info['image'],
-        }
-        api_movie.append(api_info)
-        #print(info['link'])
-        #crawling_choice(info['link'])
-    print(api_movie)
+        movie = html.select("td.title")
+        for m in movie:
+            title = m.select_one("div.tit5 a")
+            # print(title.text)
 
-def crawling_choice(url):
+            url = "https://movie.naver.com" + title.attrs["href"]
+            # print(str(number) + " : " + url)
+            movie_list.append(url)
+            number += 1
+    # sys.stdout.close()
+
+def make_info(idx, url):
+
     Name = list()
     genre = list()
     d_a = list()
@@ -95,4 +95,15 @@ def crawling_choice(url):
     }
     if info['title'] == "None" or info['story'] == "None":
         error_info.append(url)
+    es.index(index='movie', doc_type='movies', id=idx, body=info)
+    # sys.stdout.close()
 
+if __name__ == "__main__":
+    print("사전 파일을 만드는 중입니다...")
+    url_search()
+    idx = 1
+    for i in movie_list:
+        make_info(idx, i)
+        idx = idx + 1
+
+    print("사전 파일 생성이 완료되었습니다!")
