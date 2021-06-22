@@ -4,22 +4,28 @@
         <meta charset="UTF-8">
         <title>Home</title>
         <style>
+            @font-face {
+            font-family: 'twaysky';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twaysky.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            }
             body{
-                background-color:black;
-                color:red;
-                font-family: Verdana;
-                font-weight:bold;
-                font-size: 2rem
+                background-color:rgb(63, 63, 63);
+                color:rgb(255, 255, 255);
+                font-family: 'twaysky';
+                font-weight:lighter;
+                font-size: 1rem
             }
            
         </style>
     </head>
     <body>
         <center>
-            <img src="https://images.chosun.com/resizer/IGbI41rAI0wGWxqOA9Xobj3Zo2k=/530x759/smart/cloudfront-ap-northeast-1.images.arcpublishing.com/chosun/G6AL4WMPVD7CXAOZE254R7LX3A.jpg" width=500, height=600>
-            <p class: "maintext">영화 검색하기
+            <img src="https://images.chosun.com/resizer/IGbI41rAI0wGWxqOA9Xobj3Zo2k=/530x759/smart/cloudfront-ap-northeast-1.images.arcpublishing.com/chosun/G6AL4WMPVD7CXAOZE254R7LX3A.jpg" width=450, height=540>
+            <p style="font-size:3rem"class: "maintext">영화 추천 시스템
             <form action="http://localhost:5000/movielist" method="GET">
-                <input type="text" name="title" value="ex) 분노의 질주" style="width:300px;height:50px">
+                <input text-align=center type="text" name="title" value="찾고 싶은 영화 이름을 입력하세요" style="font-family: 'twaysky'; text-align:center; width:300px;height:50px">
             </form>
             </p>
         </center>
