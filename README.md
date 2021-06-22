@@ -24,4 +24,4 @@
 > 박도훈 : Flask 기반 웹 서비스 제공.  
 > 정대규 : crawling 기능 및 네이버 영화 API 통신 적용.  
 > 강창민 : elasticsearch 기반 데이터 관리.  
-> 강보석 : 실행환경 셋업 및 자동실행 쉘스크립트 및 Tfidf 주요단어 분석, Cosine similatiry 유사도 분석.  
+> 강보석 : 실행환경 셋업 및 자동실행 쉘스크립트 및 TF-IDF 주요단어 분석, Cosine similatiry 유사도 분석.  
