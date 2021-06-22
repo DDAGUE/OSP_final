@@ -5,18 +5,22 @@
     <title>TF-IDF Top10</title>
 </head>
 <body>
-    <p>TF-IDF 기반 영화 추천 Top10</p>
-    <table border=1 style="border: 1px solid black;" text-align:center;>
-        <th>순위</th>
-        <th>영화 이름</th>
-        <th>TF-IDF 유사도 값</th>
-        {% for item in res %}
-        <tr>
-            <td>{{item['index']}}</td>
-            <td>{{item['title']}}</td>
-            <td>{{item['value']}}</td>
-        </tr>
-        {% endfor %}
-    </table>
+    <div id="container">
+    <center>
+     <p>(TF-IDF)줄거리 기반 영화 추천 Top10</p>
+     <table border=1 style="border: 1px solid black;" text-align:center;>
+         <th bgcolor="#ceb3d0">순위</th>
+         <th bgcolor="#ceb3d0">영화 이름</th>
+         <th bgcolor="#ceb3d0">TF-IDF 유사도 값</th>
+         {% for item in res %}
+         <tr>
+             <td bgcolor="#ceb3d0">{{item['index']}}</td>
+             <td>{{item['title']}}</td>
+             <td>{{item['value']}}</td>
+         </tr>
+         {% endfor %}
+     </table>
+    </center>
+    </div>
 </body>
 </html>
