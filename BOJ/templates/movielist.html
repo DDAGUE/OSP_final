@@ -3,22 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <title>movie list</title>
+    <style>
+        @font-face {
+        font-family: 'twaysky';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twaysky.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+        }
+        body{
+            background-color:rgb(63, 63, 63);
+            color:rgb(255, 255, 255);
+            font-family: 'twaysky';
+            font-weight:lighter;
+            font-size: 1rem
+        }
+       
+    </style>
 </head>
 <body>
+<center>
+<p style="font-size:3rem">검색 결과
 <div>
     <form action="http://localhost:5000/result" method="POST">
             <ul>
                 {% for item in items %}
-                <div>
+                <div style = "margin:30px">
                     <input type="radio" name="index" value={{item.idx}} />
                     <img src="{{item.image}}" alt="" width="110" height="150">  제목 : {{ item.title }} ( 감독: {{item.director}} ) 배우: {{ item.actor }}
                 </div>
                 {% endfor %}
-                <br>배우, 감독, 장르와 비슷한 영화 찾기(Cosine) <input type="submit" name = "menu" value="검색하기"/><br>
-                줄거리가 비슷한 영화 찾기(TF-IDF) <input type="submit" name = "menu" value="검색하기"/>
+                <br>
+                <input style="font-family: 'twaysky'; text-align:center; width:250px;height:30px" type="submit" name = "menu" value="배우, 감독, 장르가 비슷한 영화 찾기"/><br>
+                <input style="font-family: 'twaysky'; text-align:center; width:200px;height:30px" type="submit" name = "menu" value="줄거리가 비슷한 영화 찾기"/>
             </ul>
     </form>
 
 </div>
+</center>
 </body>
 </html>
