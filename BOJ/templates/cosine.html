@@ -5,18 +5,22 @@
     <title>Cosine-Similarlity Top10</title>
 </head>
 <body>
-    <p>Cosine-Similarlity 기반 영화 추천 Top10</p>
-    <table border=1 style="border: 1px solid black;" text-align:center;>
-        <th>순위</th>
-        <th>영화 이름</th>
-        <th>코사인 유사 값</th>
-        {% for item in res %}
-        <tr>
-            <td>{{item['index']}}</td>
-            <td>{{item['title']}}</td>
-            <td>{{item['value']}}</td>
-        </tr>
-        {% endfor %}
-    </table>
+    <div id="container">
+    <center>
+     <p>(Cosine-Similarlity)배우, 감독, 장르 기반 영화 추천 Top10</p>
+     <table border=1 style="border: 1px solid black;" text-align:center;>
+         <th bgcolor="skyblue">순위</th>
+         <th bgcolor="skyblue">영화 이름</th>
+         <th bgcolor="skyblue">코사인 유사 값</th>
+         {% for item in res %}
+         <tr>
+             <td bgcolor="skyblue">{{item['index']}}</td>
+             <td>{{item['title']}}</td>
+             <td>{{item['value']}}</td>
+         </tr>
+         {% endfor %}
+     </table>
+    </center>
+    </div>
 </body>
 </html>
