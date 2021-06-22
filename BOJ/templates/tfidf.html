@@ -3,18 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>TF-IDF Top10</title>
+    <style>
+        @font-face {
+        font-family: 'twaysky';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twaysky.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+        }
+        body{
+            background-color:rgb(63, 63, 63);
+            color:rgb(255, 255, 255);
+            font-family: 'twaysky';
+            font-weight:lighter;
+            font-size: 1rem
+        }
+       
+    </style>
 </head>
 <body>
     <div id="container">
     <center>
-     <p>(TF-IDF)줄거리 기반 영화 추천 Top10</p>
-     <table border=1 style="border: 1px solid black;" text-align:center;>
-         <th bgcolor="#ceb3d0">순위</th>
-         <th bgcolor="#ceb3d0">영화 이름</th>
-         <th bgcolor="#ceb3d0">TF-IDF 유사도 값</th>
+     <p style = " color:rgb(255, 255, 255); font-size:2rem; font-weight:bold;"">줄거리 기반 영화 추천 Top10</p>
+     <table border=1 style="border: 1px solid rgb(255, 255, 255);" text-align:center;>
+         <th>순위</th>
+         <th>영화 이름</th>
+         <th>유사도</th>
          {% for item in res %}
          <tr>
-             <td bgcolor="#ceb3d0">{{item['index']}}</td>
+             <td>{{item['index']}}</td>
              <td>{{item['title']}}</td>
              <td>{{item['value']}}</td>
          </tr>
