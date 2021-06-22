@@ -14,9 +14,8 @@
                     <img src="{{item.image}}" alt="" width="110" height="150">  제목 : {{ item.title }} ( 감독: {{item.director}} ) 배우: {{ item.actor }}
                 </div>
                 {% endfor %}
-
-                <input type="submit" name = "menu" value="cosine"/> Cosine
-                <input type="submit" name = "menu" value="tfidf"/> TF-IDF
+                <br>배우, 감독, 장르와 비슷한 영화 찾기(Cosine) <input type="submit" name = "menu" value="검색하기"/><br>
+                줄거리가 비슷한 영화 찾기(TF-IDF) <input type="submit" name = "menu" value="검색하기"/>
             </ul>
     </form>
 
