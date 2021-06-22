@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Home</title>
-</head>
-<body>
-<p>영화 이름 입력
-<form action="http://localhost:5000/movielist" method="GET">
-    <input type="text" name="title" value="input">
-</form>
-</p>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Home</title>
+        <style>
+            body{
+                background-color:black;
+                color:red;
+                font-family: Verdana;
+                font-weight:bold;
+                font-size: 2rem
+            }
+           
+        </style>
+    </head>
+    <body>
+        <center>
+            <img src="https://images.chosun.com/resizer/IGbI41rAI0wGWxqOA9Xobj3Zo2k=/530x759/smart/cloudfront-ap-northeast-1.images.arcpublishing.com/chosun/G6AL4WMPVD7CXAOZE254R7LX3A.jpg" width=500, height=600>
+            <p class: "maintext">영화 검색하기
+            <form action="http://localhost:5000/movielist" method="GET">
+                <input type="text" name="title" value="ex) 분노의 질주" style="width:300px;height:50px">
+            </form>
+            </p>
+        </center>
+    </body>
 </html>
