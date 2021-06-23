@@ -57,9 +57,9 @@ def choice():
     menu = request.form['menu']
     tem = request.form['index']
 
-    if menu == 'cosine':
+    if menu == '배우, 감독, 장르가 비슷한 영화 찾기':
         return cosine(tem)
-    elif menu == 'tfidf':
+    elif menu == '줄거리가 비슷한 영화 찾기':
         return tf_idf(tem)
 
 
